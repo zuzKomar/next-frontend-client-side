@@ -1,0 +1,36 @@
+.signup {
+  &__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &__input {
+      &__data {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        &__input {
+          display: inline-block;
+          box-sizing: border-box;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          padding: 6px 10px;
+        }
+      }
+      &__error {
+        color: red;
+      }
+    }
+
+    &__submitbtn {
+      cursor: pointer;
+    }
+  }
+  &__login {
+    &__link {
+      cursor: pointer;
+      color: #0047ab !important;
+    }
+  }
+}

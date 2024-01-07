@@ -1,5 +1,5 @@
-import NextAuth from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
+import NextAuth from 'next-auth';
+import CredentialsProvider from 'next-auth/providers/credentials';
 
 async function refreshAccessToken(tokenObject) {
   //console.log('param', tokenObject)
@@ -7,10 +7,10 @@ async function refreshAccessToken(tokenObject) {
     console.log(process.env.NEST_URL);
     // Get a new set of tokens with a refreshToken
     const tokenResponse = await fetch(`${process.env.NEST_URL}auth/refresh`, {
-      method: "GET",
+      method: 'GET',
       headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + tokenObject.refreshToken,
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + tokenObject.refreshToken,
       },
     });
 
@@ -25,7 +25,7 @@ async function refreshAccessToken(tokenObject) {
   } catch (error) {
     return {
       ...tokenObject,
-      error: "RefreshAccessTokenError",
+      error: 'RefreshAccessTokenError',
     };
   }
 }
@@ -34,11 +34,11 @@ export default NextAuth({
   providers: [
     CredentialsProvider({
       // The name to display on the sign in form (e.g. 'Sign in with...')
-      id: "credentials",
-      name: "my-project",
+      id: 'credentials',
+      name: 'my-project',
       credentials: {
-        email: { label: "email", type: "email" },
-        password: { label: "Password", type: "password" },
+        email: { label: 'email', type: 'email' },
+        password: { label: 'Password', type: 'password' },
       },
       // The credentials is used to generate a suitable form on the sign in page.
       // You can specify whatever fields you are expecting to be submitted.
@@ -52,10 +52,10 @@ export default NextAuth({
         };
 
         const res = await fetch(`${process.env.NEST_URL}auth/login`, {
-          method: "POST",
+          method: 'POST',
           body: JSON.stringify(payload),
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
         });
         const user = await res.json();
@@ -66,7 +66,7 @@ export default NextAuth({
         // If no error and we have user data, return it
         if (res.ok && user) {
           //console.log('1. odpowiedz z logowania', user);
-          const tokenPayload = JSON.parse(atob(user.token.split(".")[1]));
+          const tokenPayload = JSON.parse(atob(user.token.split('.')[1]));
           const isExpired = Date.now() > tokenPayload.exp * 1000;
           //console.log(new Date(tokenPayload.exp * 1000))
           return user;
@@ -79,7 +79,7 @@ export default NextAuth({
   ],
   secret: process.env.NEXT_PUBLIC_SECRET,
   pages: {
-    signIn: "/auth/signin",
+    signIn: '/auth/signin',
   },
   callbacks: {
     async jwt({ token, user, account }) {
@@ -91,7 +91,7 @@ export default NextAuth({
 
       if (account && user) {
         token.userId = user.id;
-        token.user = user.firstName + " " + user.lastName;
+        token.user = user.firstName + ' ' + user.lastName;
         token.accessToken = user.token;
         token.accessTokenExpiry = token.exp;
         token.refreshToken = user.refreshToken;
@@ -99,7 +99,7 @@ export default NextAuth({
       //Math.round((1676926364 - 900000)-Date.now())
       //const shouldRefreshTime = Math.round((token.accessTokenExpiry - 900000) - Date.now());
       //const shouldRefreshTime = Date.now()-60000 >= (token.accessTokenExpiry * 1000)
-      const tokenPayload = JSON.parse(atob(token.accessToken.split(".")[1]));
+      const tokenPayload = JSON.parse(atob(token.accessToken.split('.')[1]));
       //console.log('data w jwt callbacku', new Date(tokenPayload.exp * 1000));
       const shouldRefreshToken = Date.now() > tokenPayload.exp * 1000;
       if (shouldRefreshToken) {
@@ -120,17 +120,17 @@ export default NextAuth({
       session.user.id = token.userId;
       session.user.name = token.user;
 
-      const tokenPayload = JSON.parse(atob(token.accessToken.split(".")[1]));
+      const tokenPayload = JSON.parse(atob(token.accessToken.split('.')[1]));
       session.expires = new Date(tokenPayload.exp * 1000);
       //console.log('session after eventual improvements', session);
       return session;
     },
   },
   theme: {
-    colorScheme: "auto", // "auto" | "dark" | "light"
-    brandColor: "", // Hex color code #33FF5D
-    logo: "/logo.png", // Absolute URL to image
+    colorScheme: 'auto', // "auto" | "dark" | "light"
+    brandColor: '', // Hex color code #33FF5D
+    logo: '/logo.png', // Absolute URL to image
   },
   // Enable debug messages in the console if you are having problems
-  debug: process.env.NODE_ENV === "development",
+  debug: process.env.NODE_ENV === 'development',
 });

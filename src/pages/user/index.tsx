@@ -22,8 +22,8 @@ export default function UserPage() {
   const { data } = useSession();
   const [editMode, setEditMode] = useState(false);
   const [formData, setFormData] = useState<any>();
-  let token = data?.user ? data.user.token : '';
-  let email = data?.user ? data.user.email : '';
+  const token = data?.user ? data.user.token : '';
+  const email = data?.user ? data.user.email : '';
   let loginCredentialsChanged = false;
 
   const {
@@ -50,7 +50,7 @@ export default function UserPage() {
 
   const onSubmit: SubmitHandler<IFormInputs> = async (data, e: any) => {
     e.preventDefault();
-    let updateUserDto: any = {};
+    const updateUserDto: any = {};
 
     if (data.firstName && data.firstName.length > 0) {
       updateUserDto['firstName'] = data.firstName;

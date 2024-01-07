@@ -5,7 +5,7 @@ import { signOut, useSession } from 'next-auth/react';
 
 export const Navbar = () => {
   const router = useRouter();
-  let currentPath = router.pathname.split('/')[1];
+  const currentPath = router.pathname.split('/')[1];
   const { data: session } = useSession();
   return (
     <Flex justifyContent="center" direction="column">

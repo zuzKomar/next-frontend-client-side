@@ -15,17 +15,17 @@ type SelectedCarInfoProps = {
 const SelectedCarInfo = ({ carData }: SelectedCarInfoProps) => {
   const [open, setOpen] = useState(false);
   const [car, setCar] = useState(carData);
-  let photoPath = `../../../public/static/${carData.photo}.png`;
+  const photoPath = `../../../public/static/${carData.photo}.png`;
 
   const { data } = useSession();
   const userId = data ? data?.user?.id : '';
-  let token = data?.user ? data.user.token : '';
+  const token = data?.user ? data.user.token : '';
   //const nextCarRents = car?.rents.length > 0 ? car.rents : []; //filter all rents that are gonna be in the future, pass it to modal
 
   function handleCarRental(carId: number, userId: number, date: any, dueDate: any) {
     //check if this car is available this time
     //fetch post -> create new rent
-    let createRentDto = {
+    const createRentDto = {
       userId,
       carId,
       date:
@@ -84,7 +84,7 @@ const SelectedCarInfo = ({ carData }: SelectedCarInfoProps) => {
     let isBooked = false;
 
     if (carData.rents)
-      for (let rent of carData.rents) {
+      for (const rent of carData.rents) {
         if (
           (new Date(dateFrom) >= new Date(rent.date) &&
             new Date(dateFrom) <= new Date(rent.dueDate)) ||

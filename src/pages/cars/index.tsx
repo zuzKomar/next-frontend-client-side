@@ -26,9 +26,9 @@ export default function Cars() {
   const [noCars, setNoCars] = useState<boolean>(carData.length === 0);
 
   const { data } = useSession();
-  let token = data?.user ? data.user?.token : '';
+  const token = data?.user ? data.user?.token : '';
 
-  let columns = [
+  const columns = [
     { name: 'Brand', uid: 'brand' },
     { name: 'Model', uid: 'model' },
     { name: 'Prod. year', uid: 'productionYear' },
@@ -95,7 +95,7 @@ export default function Cars() {
     }
 
     const url = new URL(window.location.href);
-    let pathname = url.pathname.slice(1) + newUrl.slice(0, -1);
+    const pathname = url.pathname.slice(1) + newUrl.slice(0, -1);
 
     if (pathname.length > 5) {
       await fetch(`${process.env.NEST_URL}/${pathname}`, {

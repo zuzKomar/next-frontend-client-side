@@ -6,8 +6,8 @@ function IndexPage() {
     <div>
       <Head>
         <title>The Midnight! Rent a car</title>
-        <Script type="text/javascript" src="https://unpkg.com/default-passive-events" />
       </Head>
+      <Script type="text/javascript" src="https://unpkg.com/default-passive-events" />
     </div>
   );
 }

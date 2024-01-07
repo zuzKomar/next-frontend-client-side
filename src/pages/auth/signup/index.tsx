@@ -18,10 +18,10 @@ const schema = yup.object({
     .min(11)
     .max(11)
     .test('validatePesel', function validatePesel(pesel) {
-      let reg = /^[0-9]{11}$/;
+      const reg = /^[0-9]{11}$/;
       if (reg.test(pesel!) === false) return false;
       else {
-        let digits = ('' + pesel).split('');
+        const digits = ('' + pesel).split('');
         if (parseInt(pesel!.substring(4, 6)) > 31 || parseInt(pesel!.substring(2, 4)) > 12)
           return false;
 
@@ -63,7 +63,7 @@ export default function Signup() {
   });
 
   const onSubmit: SubmitHandler<IFormInputs> = async data => {
-    let createUserDto = {
+    const createUserDto = {
       firstName: data.firstName,
       lastName: data.lastName,
       phone: data.phone,

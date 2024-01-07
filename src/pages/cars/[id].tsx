@@ -11,7 +11,7 @@ export default function CarPage() {
   const router = useRouter();
   const { id } = router.query;
   const [carData, setCarData] = useState<Car>();
-  let token = data?.user ? data?.user?.token : '';
+  const token = data?.user ? data?.user?.token : '';
 
   useEffect(() => {
     fetch(`${process.env.NEST_URL}/${id}`, {

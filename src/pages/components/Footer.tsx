@@ -1,6 +1,6 @@
 import { Footer as AdobeFooter } from '@adobe/react-spectrum';
 
-export const Footer = () => {
+const Footer = () => {
   return (
     <AdobeFooter
       height="40px"
@@ -19,3 +19,5 @@ export const Footer = () => {
     </AdobeFooter>
   );
 };
+
+export default Footer;

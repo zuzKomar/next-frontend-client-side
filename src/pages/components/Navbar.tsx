@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { signOut, useSession } from 'next-auth/react';
 
-export const Navbar = () => {
+const Navbar = () => {
   const router = useRouter();
   const currentPath = router.pathname.split('/')[1];
   const { data: session } = useSession();
@@ -46,3 +46,5 @@ export const Navbar = () => {
     </Flex>
   );
 };
+
+export default Navbar;

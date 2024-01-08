@@ -1,9 +1,9 @@
 import { Flex, View } from '@adobe/react-spectrum';
 import logo from '../../../public/static/logo1.jpeg';
 import Image from 'next/image';
-import { Navbar } from './Navbar';
+import Navbar from './Navbar';
 
-export const Header = () => {
+const Header = () => {
   return (
     <Flex direction="column" justifyContent="center" width="100%">
       <View backgroundColor="static-black" width="100%">
@@ -25,3 +25,5 @@ export const Header = () => {
     </Flex>
   );
 };
+
+export default Header;

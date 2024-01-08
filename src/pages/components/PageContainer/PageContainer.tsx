@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
-import { Header } from './../Header';
-import { Footer } from './../Footer';
+import Header from './../Header';
+import Footer from './../Footer';
 import { Flex, View } from '@adobe/react-spectrum';
 import style from './PageContainer.module.css';
 import { useRouter } from 'next/router';
@@ -19,7 +19,7 @@ export const PageContainer = ({ children, checkAuthorized }: PageContainerProps)
   useEffect(() => {
     if (checkAuthorized && !data) {
       setUnauthorized(true);
-      router.push('http://localhost:3001/auth/signin');
+      router.push('/auth/signin');
     }
   }, []);
 

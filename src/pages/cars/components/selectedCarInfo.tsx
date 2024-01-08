@@ -104,24 +104,32 @@ const SelectedCarInfo = ({ carData }: SelectedCarInfoProps) => {
     <View UNSAFE_style={{ backgroundColor: 'rgba(0,0,0,0.5)' }} width="70%">
       <Flex direction="row" justifyContent="space-evenly">
         <Flex direction="column" gap="size-150" wrap>
-          <TextField label="Brand" defaultValue={car.brand} isDisabled={true} />
-          <TextField label="Model" defaultValue={car.model} isDisabled={true} />
+          <TextField label="Brand" defaultValue={car ? car.brand : ''} isDisabled={true} />
+          <TextField label="Model" defaultValue={car ? car.model : ''} isDisabled={true} />
           <TextField
             label="Production year"
-            defaultValue={car.productionYear.toString()}
+            defaultValue={car ? car.productionYear.toString() : ''}
             isDisabled={true}
           />
-          <TextField label="Power" defaultValue={car.power.toString()} isDisabled={true} />
+          <TextField
+            label="Power"
+            defaultValue={car ? car.power.toString() : ''}
+            isDisabled={true}
+          />
           <TextField label="Capacity" defaultValue={car.capacity.toString()} isDisabled={true} />
           <TextField
             label="Number of seats"
             defaultValue={car.numberOfSeats ? car.numberOfSeats.toString() : ''}
             isDisabled={true}
           />
-          <TextField label="Transmission" defaultValue={car.transmission} isDisabled={true} />
+          <TextField
+            label="Transmission"
+            defaultValue={car ? car.transmission : ''}
+            isDisabled={true}
+          />
           <TextField
             label="Cost of rent per day"
-            defaultValue={car.costPerDay.toString()}
+            defaultValue={car ? car.costPerDay.toString() : ''}
             isDisabled={true}
           />
         </Flex>
@@ -133,9 +141,9 @@ const SelectedCarInfo = ({ carData }: SelectedCarInfoProps) => {
               <Text>Rent me!</Text>
             </Button>
             <RentModal
-              carId={carData.id}
+              carId={car ? carData.id : 0}
               userId={userId || 1}
-              costPerDay={carData.costPerDay}
+              costPerDay={car ? carData.costPerDay : 0}
               closeHandler={setOpen}
               confirmHandler={handleCarRental}
               checkAvailabilityHandler={handleCarAvailabilityCheck}

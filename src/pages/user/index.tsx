@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { signOut, useSession } from 'next-auth/react';
-import { PageContainer } from '../components/PageContainer/PageContainer';
+import PageContainer from '../components/PageContainer/PageContainer';
 import * as yup from 'yup';
 import styles from '../../styles/signup.module.scss';
 import { Button, Form, TextField, View } from '@adobe/react-spectrum';

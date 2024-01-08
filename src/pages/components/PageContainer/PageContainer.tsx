@@ -11,7 +11,7 @@ type PageContainerProps = {
   checkAuthorized?: boolean;
 };
 
-export const PageContainer = ({ children, checkAuthorized }: PageContainerProps): JSX.Element => {
+const PageContainer = ({ children, checkAuthorized }: PageContainerProps): JSX.Element => {
   const [unauthorized, setUnauthorized] = useState(false);
   const { data } = useSession();
   const router = useRouter();
@@ -42,3 +42,5 @@ export const PageContainer = ({ children, checkAuthorized }: PageContainerProps)
     </Flex>
   );
 };
+
+export default PageContainer;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { PageContainer } from '../components/PageContainer/PageContainer';
+import PageContainer from '../components/PageContainer/PageContainer';
 import SelectedCarInfo from './components/selectedCarInfo';
 import { useSession } from 'next-auth/react';
 import IndexPage from '../components/IndexPage';

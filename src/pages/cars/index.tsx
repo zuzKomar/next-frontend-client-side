@@ -10,7 +10,7 @@ import {
   Cell,
   Header,
 } from '@adobe/react-spectrum';
-import { PageContainer } from '../components/PageContainer/PageContainer';
+import PageContainer from '../components/PageContainer/PageContainer';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 import { useState, useEffect } from 'react';

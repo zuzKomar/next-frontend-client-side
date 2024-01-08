@@ -1,4 +1,4 @@
-import { PageContainer } from './components/PageContainer/PageContainer';
+import PageContainer from './components/PageContainer/PageContainer';
 
 function NotFoundPage() {
   return (

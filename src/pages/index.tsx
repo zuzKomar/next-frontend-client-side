@@ -1,6 +1,6 @@
 import { Flex, Text } from '@adobe/react-spectrum';
 import type { NextPage } from 'next';
-import { PageContainer } from './components/PageContainer/PageContainer';
+import PageContainer from './components/PageContainer/PageContainer';
 import IndexPage from './components/IndexPage';
 
 const Home: NextPage = () => {

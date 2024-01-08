@@ -1,5 +1,5 @@
 import { Button, Form, View } from '@adobe/react-spectrum';
-import { PageContainer } from '../../components/PageContainer/PageContainer';
+import PageContainer from '../../components/PageContainer/PageContainer';
 import { useRouter } from 'next/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import * as yup from 'yup';

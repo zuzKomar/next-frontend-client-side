@@ -116,7 +116,11 @@ const SelectedCarInfo = ({ carData }: SelectedCarInfoProps) => {
             defaultValue={car ? car.power.toString() : ''}
             isDisabled={true}
           />
-          <TextField label="Capacity" defaultValue={car.capacity.toString()} isDisabled={true} />
+          <TextField
+            label="Capacity"
+            defaultValue={car ? car.capacity.toString() : ''}
+            isDisabled={true}
+          />
           <TextField
             label="Number of seats"
             defaultValue={car.numberOfSeats ? car.numberOfSeats.toString() : ''}

@@ -123,7 +123,7 @@ const SelectedCarInfo = ({ carData }: SelectedCarInfoProps) => {
           />
           <TextField
             label="Number of seats"
-            defaultValue={car.numberOfSeats ? car.numberOfSeats.toString() : ''}
+            defaultValue={car && car.numberOfSeats ? car.numberOfSeats.toString() : ''}
             isDisabled={true}
           />
           <TextField

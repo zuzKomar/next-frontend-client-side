@@ -1,5 +1,5 @@
 import { Flex, TextField, View } from '@adobe/react-spectrum';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Car as CarType } from '../../../types/Car';
 import Car from '@spectrum-icons/workflow/Car';
 import { Button } from '@adobe/react-spectrum';
@@ -15,13 +15,13 @@ type SelectedCarInfoProps = {
 const SelectedCarInfo = ({ carData }: SelectedCarInfoProps) => {
   const [open, setOpen] = useState(false);
   const [car, setCar] = useState(carData);
-  const photoPath = `../../../public/static/${carData.photo}.png`;
+  const photoPath = `../../../public/static/${carData ? carData.photo : ''}.png`;
 
   const { data } = useSession();
   const userId = data ? data?.user?.id : '';
   const token = data?.user ? data.user.token : '';
-  //const nextCarRents = car?.rents.length > 0 ? car.rents : []; //filter all rents that are gonna be in the future, pass it to modal
-
+  //const nextCarRents = car?.rents.length > 0 ? car.rents : []; //filter all rents that are gonna be in the future, pass it to modals
+  //TODO: car details fetch to be added
   function handleCarRental(carId: number, userId: number, date: any, dueDate: any) {
     //check if this car is available this time
     //fetch post -> create new rent

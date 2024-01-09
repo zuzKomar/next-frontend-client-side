@@ -39,7 +39,7 @@ export default function Cars() {
 
   useEffect(() => {
     if (data) {
-      fetch(`${process.env.NEST_URL}/cars`, {
+      fetch(`/api/fetch-all-cars`, {
         mode: 'cors',
         headers: {
           'Content-Type': 'application/json',

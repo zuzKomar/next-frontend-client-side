@@ -45,13 +45,13 @@ export default NextAuth({
       // e.g. domain, username, password, 2FA token, etc.
       // You can pass any HTML attribute to the <input> tag through the object.
       async authorize(credentials, req) {
-        console.log(credentials);
+        console.log('creds: ', credentials);
         const payload = {
           email: req.body.email,
           password: req.body.password,
         };
 
-        const res = await fetch(`${process.env.NEST_URL}auth/login`, {
+        const res = await fetch(`${process.env.NEST_URL}/auth/login`, {
           method: 'POST',
           body: JSON.stringify(payload),
           headers: {

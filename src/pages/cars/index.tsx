@@ -38,6 +38,7 @@ export default function Cars() {
   ];
 
   useEffect(() => {
+    console.log(data);
     if (data) {
       console.log('weszło');
 
@@ -49,7 +50,7 @@ export default function Cars() {
         },
       })
         .then(res => res.json())
-        .then(res => setCarData(res.body));
+        .then(data => setCarData(data.body));
     }
   }, [data]);
 

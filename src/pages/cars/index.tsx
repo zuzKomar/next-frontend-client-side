@@ -49,8 +49,13 @@ export default function Cars() {
           Authorization: 'Bearer ' + token,
         },
       })
-        .then(res => res.json())
-        .then(data => setCarData(data.body));
+        .then(res => {
+          return res.json();
+        })
+        .then(data => {
+          console.log(data);
+          setCarData(data.body);
+        });
     }
   }, [data]);
 

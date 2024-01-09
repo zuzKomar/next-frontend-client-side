@@ -39,6 +39,8 @@ export default function Cars() {
 
   useEffect(() => {
     if (data) {
+      console.log('weszło');
+
       fetch(`/api/fetch-all-cars`, {
         mode: 'cors',
         headers: {
@@ -49,7 +51,7 @@ export default function Cars() {
         .then(res => res.json())
         .then(res => setCarData(res.body));
     }
-  }, []);
+  }, [data]);
 
   async function fetchFilteredData(filtersData: CarFiltersType) {
     let newUrl = '?';

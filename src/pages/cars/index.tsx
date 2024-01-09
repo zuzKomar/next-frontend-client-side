@@ -47,7 +47,7 @@ export default function Cars() {
         },
       })
         .then(res => res.json())
-        .then(res => setCarData(res));
+        .then(res => setCarData(res.body));
     }
   }, []);
 

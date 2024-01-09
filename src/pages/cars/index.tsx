@@ -53,8 +53,8 @@ export default function Cars() {
           return res.json();
         })
         .then(data => {
-          console.log(data);
-          setCarData(data.body);
+          console.log(data.body);
+          setCarData([...data.body]);
         });
     }
   }, [data]);

@@ -30,7 +30,8 @@ export default function Signin() {
 
   const onSubmit: SubmitHandler<ILoginFormInputs> = async (data, e: any) => {
     e.preventDefault();
-    const res = await signIn('credentials', {
+
+    await signIn('credentials', {
       redirect: false,
       email: data.email,
       password: data.password,

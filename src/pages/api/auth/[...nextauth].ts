@@ -1,7 +1,8 @@
 import CredentialsProvider from 'next-auth/providers/credentials';
 import NextAuth, { NextAuthOptions } from 'next-auth';
+import { JWT } from 'next-auth/jwt';
 
-async function refreshAccessToken(tokenObject) {
+async function refreshAccessToken(tokenObject: JWT) {
   try {
     // Get a new set of tokens with a refreshToken
     const tokenResponse = await fetch(`${process.env.NEST_URL}/auth/refresh`, {
@@ -39,7 +40,7 @@ export const authOptions: NextAuthOptions = {
         email: { label: 'email', type: 'email' },
         password: { label: 'Password', type: 'password' },
       },
-      async authorize(credentials) {
+      async authorize(credentials: any) {
         if (!credentials.email || !credentials.password) return null;
         const { email, password } = credentials;
         const res = await fetch(`${process.env.NEST_URL}/auth/login`, {

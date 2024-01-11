@@ -36,7 +36,7 @@ export default function UserPage() {
 
   useEffect(() => {
     if (data) {
-      fetch(`${process.env.NEST_URL}/users/${email}`, {
+      fetch(`/api/fetch-user-data`, {
         mode: 'cors',
         headers: {
           'Content-Type': 'application/json',

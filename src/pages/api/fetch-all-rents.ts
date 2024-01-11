@@ -9,7 +9,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return;
   }
 
-  await fetch(`https://rent-a-car-backend-f130520aafb5.herokuapp.com/cars`, {
+  await fetch(`https://rent-a-car-backend-f130520aafb5.herokuapp.com/users/${token?.email}`, {
     method: 'GET',
     mode: 'cors',
     headers: {
@@ -24,5 +24,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return data;
     });
 
-  return res.send({ status: 200, message: 'Hello from Next.js cars proxy', body: tmpRespObject });
+  return res.send({ status: 200, message: 'Hello from Next.js rents proxy', body: tmpRespObject });
 }

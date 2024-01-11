@@ -38,10 +38,7 @@ export default function Cars() {
   ];
 
   useEffect(() => {
-    console.log(data);
     if (data) {
-      console.log('weszło');
-
       fetch(`/api/fetch-all-cars`, {
         mode: 'cors',
         headers: {
@@ -53,7 +50,6 @@ export default function Cars() {
           return res.json();
         })
         .then(data => {
-          console.log(data.body);
           setCarData([...data.body]);
           setNoCars(data.body.length === 0);
         });

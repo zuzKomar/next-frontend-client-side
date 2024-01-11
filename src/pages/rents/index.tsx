@@ -7,6 +7,7 @@ import {
   TableBody,
   TableHeader,
   Button,
+  Header,
 } from '@adobe/react-spectrum';
 import { days } from '../cars/components/rentModal';
 import { useRouter } from 'next/router';
@@ -17,23 +18,11 @@ import { useEffect, useState } from 'react';
 
 export default function Rents() {
   const router = useRouter();
-  const { data } = useSession();
   const [rents, setRents] = useState<Rent[]>([]);
-  const token = data?.user!.token || '';
+  const [noRents, setNoRents] = useState<boolean>();
 
-  useEffect(() => {
-    if (data) {
-      fetch(`${process.env.NEST_URL}/users/${data.user.email}`, {
-        mode: 'cors',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + token,
-        },
-      })
-        .then(res => res.json())
-        .then(res => setRents([...res]));
-    }
-  }, []);
+  const { data } = useSession();
+  const token = data?.user!.token || '';
 
   const columns = [
     { name: 'Car', uid: 'car' },
@@ -43,6 +32,25 @@ export default function Rents() {
     { name: 'Damaged', uid: 'damagedCar' },
     { name: 'Options', uid: 'reportDamage' },
   ];
+
+  useEffect(() => {
+    if (data) {
+      fetch(`/api/fetch-all-rents`, {
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + token,
+        },
+      })
+        .then(res => {
+          return res.json();
+        })
+        .then(data => {
+          setRents([...data.body]);
+          setNoRents(data.body.length === 0);
+        });
+    }
+  }, []);
 
   const modifiedRents =
     rents.length > 0
@@ -76,47 +84,50 @@ export default function Rents() {
   }
 
   return (
-    <PageContainer>
+    <PageContainer checkAuthorized={true}>
       <IndexPage />
       <h1>Your rents</h1>
-      <TableView
-        aria-label="Table with your rents"
-        flex
-        selectionMode="single"
-        selectionStyle="highlight"
-        alignSelf="center"
-        width="100%"
-        UNSAFE_className="cars-tablee"
-      >
-        <TableHeader columns={columns}>
-          {column => (
-            <Column key={column.uid} align="center">
-              {column.name}
-            </Column>
-          )}
-        </TableHeader>
-        <TableBody items={modifiedRents}>
-          {(item: any) => (
-            <Row>
-              {columnKey => (
-                <Cell>
-                  {columnKey !== 'reportDamage' ? (
-                    item[columnKey]
-                  ) : (
-                    <Button
-                      variant="primary"
-                      isDisabled={item.damagedCar === 'No' ? false : true}
-                      onPress={() => handleDamageReport(item.id)}
-                    >
-                      Report damage
-                    </Button>
-                  )}
-                </Cell>
-              )}
-            </Row>
-          )}
-        </TableBody>
-      </TableView>
+      {rents.length > 0 && !noRents && (
+        <TableView
+          aria-label="Table with your rents"
+          flex
+          selectionMode="single"
+          selectionStyle="highlight"
+          alignSelf="center"
+          width="100%"
+          UNSAFE_className="cars-tablee"
+        >
+          <TableHeader columns={columns}>
+            {column => (
+              <Column key={column.uid} align="center">
+                {column.name}
+              </Column>
+            )}
+          </TableHeader>
+          <TableBody items={modifiedRents}>
+            {(item: any) => (
+              <Row>
+                {columnKey => (
+                  <Cell>
+                    {columnKey !== 'reportDamage' ? (
+                      item[columnKey]
+                    ) : (
+                      <Button
+                        variant="primary"
+                        isDisabled={item.damagedCar === 'No' ? false : true}
+                        onPress={() => handleDamageReport(item.id)}
+                      >
+                        Report damage
+                      </Button>
+                    )}
+                  </Cell>
+                )}
+              </Row>
+            )}
+          </TableBody>
+        </TableView>
+      )}
+      {rents.length === 0 && noRents && <Header>No rents so far!</Header>}
     </PageContainer>
   );
 }

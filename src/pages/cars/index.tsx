@@ -103,23 +103,22 @@ export default function Cars() {
     const pathname = url.pathname.slice(1) + newUrl.slice(0, -1);
 
     if (pathname.length > 5) {
-      await fetch(`${process.env.NEST_URL}/${pathname}`, {
+      await fetch(`/api/filter-cars`, {
+        method: 'POST',
         mode: 'cors',
         headers: {
           'Content-Type': 'application/json',
           Authorization: 'Bearer ' + token,
         },
+        body: JSON.stringify({ pathname: pathname }),
       })
         .then(res => {
           return res.json();
         })
         .then(data => {
           console.log(data);
-          if (data.length > 0) {
-            setCarData(data);
-          } else {
-            setCarData([]);
-          }
+          setCarData([...data.body]);
+          setNoCars(data.body.length === 0);
 
           window.history.pushState({}, '', url.toString());
         })
@@ -141,12 +140,8 @@ export default function Cars() {
         return res.json();
       })
       .then(data => {
-        if (data.body.length > 0) {
-          setCarData([...data.body]);
-          setNoCars(false);
-        } else {
-          setNoCars(true);
-        }
+        setCarData([...data.body]);
+        setNoCars(data.body.length === 0);
       })
       .catch(err => {
         console.log(err);

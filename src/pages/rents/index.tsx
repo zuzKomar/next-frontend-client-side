@@ -70,7 +70,7 @@ export default function Rents() {
       damagedCar: true,
     };
 
-    fetch(`${process.env.NEST_URL}/rents/${rentId}`, {
+    fetch(`/api/report-car-damage`, {
       method: 'PATCH',
       body: JSON.stringify(updateRentDto),
       mode: 'cors',

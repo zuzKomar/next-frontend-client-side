@@ -78,7 +78,7 @@ export default function UserPage() {
       loginCredentialsChanged = true;
     }
 
-    fetch(`${process.env.NEST_URL}/users/${formData.id}`, {
+    fetch(`/api/update-user`, {
       method: 'PATCH',
       body: JSON.stringify(updateUserDto),
       mode: 'cors',

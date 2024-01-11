@@ -8,6 +8,7 @@ import { IFormInputs } from '../../types/UserForm';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import IndexPage from '../components/IndexPage';
+import { User } from '@/types/User';
 
 const schema = yup.object({
   firstName: yup.string().required().min(2).max(30),
@@ -21,7 +22,7 @@ const schema = yup.object({
 export default function UserPage() {
   const { data } = useSession();
   const [editMode, setEditMode] = useState(false);
-  const [formData, setFormData] = useState<any>();
+  const [formData, setFormData] = useState<User>();
   const token = data?.user ? data.user.token : '';
   const email = data?.user ? data.user.email : '';
   let loginCredentialsChanged = false;
@@ -44,7 +45,10 @@ export default function UserPage() {
         },
       })
         .then(res => res.json())
-        .then(res => setFormData(res));
+        .then(res => {
+          console.log(res);
+          setFormData(res);
+        });
     }
   }, []);
 

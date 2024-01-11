@@ -20,7 +20,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   })
     .then(res => res.json())
     .then(data => {
-      tmpRespObject = { ...data.rents };
+      tmpRespObject = { ...data };
       return data;
     });
 

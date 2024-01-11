@@ -23,7 +23,7 @@ export default function Cars() {
   const router = useRouter();
   const [showTableFilters, setShowTableFilters] = useState(false);
   const [carData, setCarData] = useState<Car[]>([]);
-  const [noCars, setNoCars] = useState<boolean>(carData.length === 0);
+  const [noCars, setNoCars] = useState<boolean>();
 
   const { data } = useSession();
   const token = data?.user ? data.user?.token : '';
@@ -55,9 +55,10 @@ export default function Cars() {
         .then(data => {
           console.log(data.body);
           setCarData([...data.body]);
+          setNoCars(data.body.length === 0);
         });
     }
-  }, [data]);
+  }, []);
 
   async function fetchFilteredData(filtersData: CarFiltersType) {
     let newUrl = '?';
@@ -181,7 +182,7 @@ export default function Cars() {
           />
         </View>
       )}
-      {carData && carData?.length > 0 && !noCars && (
+      {carData.length > 0 && !noCars && (
         <TableView
           aria-label="Table with car available for rent"
           flex
@@ -203,7 +204,7 @@ export default function Cars() {
           </TableBody>
         </TableView>
       )}
-      {noCars && <Header>No cars available!</Header>}
+      {carData.length === 0 && noCars && <Header>No cars available!</Header>}
     </PageContainer>
   );
 }

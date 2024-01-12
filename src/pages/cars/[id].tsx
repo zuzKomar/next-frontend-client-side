@@ -13,8 +13,6 @@ export default function CarPage() {
   const [carData, setCarData] = useState<Car>();
   const token = data?.user ? data?.user?.token : '';
 
-  console.log(id);
-
   useEffect(() => {
     fetch(`/api/fetch-selected-car`, {
       method: 'POST',

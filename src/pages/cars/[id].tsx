@@ -14,12 +14,13 @@ export default function CarPage() {
   const token = data?.user ? data?.user?.token : '';
 
   useEffect(() => {
-    fetch(`${process.env.NEST_URL}/${id}`, {
+    fetch(`/api/fetch-selected-car`, {
       mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + token,
       },
+      body: JSON.stringify({ carId: id }),
     })
       .then(res => res.json())
       .then(res => setCarData(res));

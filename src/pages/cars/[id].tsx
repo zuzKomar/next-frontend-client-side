@@ -15,6 +15,7 @@ export default function CarPage() {
 
   useEffect(() => {
     fetch(`/api/fetch-selected-car`, {
+      method: 'POST',
       mode: 'cors',
       headers: {
         'Content-Type': 'application/json',

@@ -13,7 +13,6 @@ type SelectedCarInfoProps = {
 };
 
 const SelectedCarInfo = ({ carData }: SelectedCarInfoProps) => {
-  console.log(carData);
   const [open, setOpen] = useState(false);
   const [car, setCar] = useState(carData);
   const photoPath = `/static/${carData ? carData.photo : ''}.png`;

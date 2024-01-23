@@ -1,5 +1,5 @@
 import { Flex, TextField, View } from '@adobe/react-spectrum';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Car as CarType } from '../../../types/Car';
 import Car from '@spectrum-icons/workflow/Car';
 import { Button } from '@adobe/react-spectrum';

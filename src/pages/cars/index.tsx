@@ -25,8 +25,8 @@ export default function Cars() {
   const [carData, setCarData] = useState<Car[]>([]);
   const [noCars, setNoCars] = useState<boolean>();
 
-  const { data } = useSession();
-  const token = data?.user ? data.user?.token : '';
+  // const { data } = useSession();
+  // const token = data?.user ? data.user?.token : '';
 
   const columns = [
     { name: 'Brand', uid: 'brand' },
@@ -38,22 +38,24 @@ export default function Cars() {
   ];
 
   useEffect(() => {
-    if (data) {
-      fetch(`/api/fetch-all-cars`, {
-        mode: 'cors',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + token,
-        },
+    // if (data) {
+    fetch(`/api/fetch-all-cars`, {
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization:
+          'Bearer ' +
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoienV6YTFAd3AucGwiLCJpYXQiOjE3MDYwMTQ2MTUsImV4cCI6MTcwNjEwMTAxNX0.Wo4NUF4wfFmUwiotobnYOgO5xt2xPbCSmwrFZRuPUH8',
+      },
+    })
+      .then(res => {
+        return res.json();
       })
-        .then(res => {
-          return res.json();
-        })
-        .then(data => {
-          setCarData([...data.body]);
-          setNoCars(data.body.length === 0);
-        });
-    }
+      .then(data => {
+        setCarData([...data.body]);
+        setNoCars(data.body.length === 0);
+      });
+    // }
   }, []);
 
   async function fetchFilteredData(filtersData: CarFiltersType) {
@@ -108,7 +110,9 @@ export default function Cars() {
         mode: 'cors',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + token,
+          Authorization:
+            'Bearer ' +
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoienV6YTFAd3AucGwiLCJpYXQiOjE3MDYwMTQ2MTUsImV4cCI6MTcwNjEwMTAxNX0.Wo4NUF4wfFmUwiotobnYOgO5xt2xPbCSmwrFZRuPUH8',
         },
         body: JSON.stringify({ pathname: pathname }),
       })
@@ -133,7 +137,9 @@ export default function Cars() {
       mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + data?.user.token,
+        Authorization:
+          'Bearer ' +
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoienV6YTFAd3AucGwiLCJpYXQiOjE3MDYwMTQ2MTUsImV4cCI6MTcwNjEwMTAxNX0.Wo4NUF4wfFmUwiotobnYOgO5xt2xPbCSmwrFZRuPUH8',
       },
     })
       .then(res => {

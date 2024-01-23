@@ -159,7 +159,7 @@ export default function Cars() {
   }
 
   return (
-    <PageContainer checkAuthorized={true}>
+    <PageContainer>
       <IndexPage />
       <h1>Available cars:</h1>
       <Flex direction="row" marginBottom="5px">

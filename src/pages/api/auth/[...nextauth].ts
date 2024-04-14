@@ -31,7 +31,6 @@ async function refreshAccessToken(tokenObject: JWT) {
 }
 
 export const authOptions: NextAuthOptions = {
-  // Enable debug messages in the console if you are having problems
   debug: true,
   providers: [
     CredentialsProvider({
@@ -54,6 +53,7 @@ export const authOptions: NextAuthOptions = {
         });
 
         if (res.status === 401) {
+          //Unauthorized
           return null;
         }
 

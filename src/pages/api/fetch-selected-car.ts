@@ -1,7 +1,9 @@
 import { getToken } from 'next-auth/jwt';
 import { NextApiRequest, NextApiResponse } from 'next';
+import cookies from 'cookies';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const _cookies = cookies(req, res);
   const token = await getToken({ req });
   let tmpRespObject: any = {};
   if (req.method !== 'POST') {

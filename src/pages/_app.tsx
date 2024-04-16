@@ -3,7 +3,6 @@ import type { AppProps } from 'next/app';
 import { Provider, darkTheme, SSRProvider } from '@adobe/react-spectrum';
 import { SessionProvider } from 'next-auth/react';
 import { Session } from 'next-auth';
-import { useState } from 'react';
 import tgwf from '@tgwf/co2';
 
 function MyApp({

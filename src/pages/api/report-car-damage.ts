@@ -15,6 +15,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   await fetch(`https://rent-a-car-backend-f130520aafb5.herokuapp.com/rents/${req.body.rentId}`, {
     method: 'PATCH',
     mode: 'cors',
+    cache: 'no-store',
     headers: {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',

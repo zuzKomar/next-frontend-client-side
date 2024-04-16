@@ -37,6 +37,7 @@ export default function Rents() {
     if (data) {
       fetch(`/api/fetch-all-rents`, {
         mode: 'cors',
+        cache: 'no-store',
         headers: {
           'Content-Type': 'application/json',
           Authorization: 'Bearer ' + token,

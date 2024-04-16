@@ -39,6 +39,7 @@ export default function UserPage() {
     if (data) {
       fetch(`/api/fetch-user-data`, {
         mode: 'cors',
+        cache: 'no-store',
         headers: {
           'Content-Type': 'application/json',
           Authorization: 'Bearer ' + token,

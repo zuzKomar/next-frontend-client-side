@@ -17,6 +17,7 @@ export default function CarPage() {
     fetch(`/api/fetch-selected-car`, {
       method: 'POST',
       mode: 'cors',
+      cache: 'no-store',
       headers: {
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + token,

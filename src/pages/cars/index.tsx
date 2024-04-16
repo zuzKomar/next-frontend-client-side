@@ -41,6 +41,7 @@ export default function Cars() {
     if (data) {
       fetch(`/api/fetch-all-cars`, {
         mode: 'cors',
+        cache: 'no-store',
         headers: {
           'Content-Type': 'application/json',
           Authorization: 'Bearer ' + token,

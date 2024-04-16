@@ -1,7 +1,9 @@
+'use client';
+import dynamic from 'next/dynamic';
 import { Flex, View } from '@adobe/react-spectrum';
 import logo from '../../../public/static/logo1.jpeg';
 import Image from 'next/image';
-import Navbar from './Navbar';
+const Navbar = dynamic(() => import('./Navbar'), { ssr: false });
 
 const Header = () => {
   return (

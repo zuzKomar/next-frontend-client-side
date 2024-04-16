@@ -1,3 +1,4 @@
+'use client';
 import { Flex, Item, TabList, Tabs } from '@adobe/react-spectrum';
 import Link from 'next/link';
 import { useRouter } from 'next/router';

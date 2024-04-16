@@ -1,3 +1,4 @@
+'use client';
 import { Footer as AdobeFooter } from '@adobe/react-spectrum';
 
 const Footer = () => {

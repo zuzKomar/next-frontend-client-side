@@ -1,3 +1,4 @@
+'use client';
 import { CarFiltersType } from '@/types/UserForm';
 import { Button, ComboBox, Flex, Item, RangeSlider, TextField } from '@adobe/react-spectrum';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';

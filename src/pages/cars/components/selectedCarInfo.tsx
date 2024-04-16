@@ -1,3 +1,4 @@
+'use client';
 import { Flex, TextField, View } from '@adobe/react-spectrum';
 import React, { useState } from 'react';
 import { Car as CarType } from '../../../types/Car';

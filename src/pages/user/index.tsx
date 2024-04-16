@@ -1,3 +1,4 @@
+'use client';
 import React, { useState, useEffect } from 'react';
 import { signOut, useSession } from 'next-auth/react';
 import PageContainer from '../components/PageContainer/PageContainer';

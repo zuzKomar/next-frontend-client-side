@@ -1,3 +1,4 @@
+'use client';
 import { useState, useEffect } from 'react';
 import { AlertDialog, Button, Flex } from '@adobe/react-spectrum';
 import { DatePicker } from '@adobe/react-spectrum';

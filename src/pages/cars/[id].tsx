@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import PageContainer from '../components/PageContainer/PageContainer';
-import SelectedCarInfo from './components/selectedCarInfo';
-import { useSession } from 'next-auth/react';
-import IndexPage from '../components/IndexPage';
+'use client';
+import dynamic from 'next/dynamic';
 import { Car } from '../../types/Car';
 import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/react';
+import React, { useState, useEffect } from 'react';
+const PageContainer = dynamic(() => import('../components/PageContainer/PageContainer'), {
+  ssr: false,
+});
+const SelectedCarInfo = dynamic(() => import('./components/selectedCarInfo'), { ssr: false });
+const IndexPage = dynamic(() => import('../components/IndexPage'), { ssr: false });
 
 export default function CarPage() {
   const { data } = useSession();

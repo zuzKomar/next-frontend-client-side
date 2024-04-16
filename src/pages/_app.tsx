@@ -1,3 +1,4 @@
+'use client';
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
 import { Provider, darkTheme, SSRProvider } from '@adobe/react-spectrum';

@@ -1,3 +1,4 @@
+'use client';
 import PageContainer from '../components/PageContainer/PageContainer';
 import {
   Cell,

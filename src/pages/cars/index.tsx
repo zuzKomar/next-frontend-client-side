@@ -1,3 +1,5 @@
+'use client';
+import dynamic from 'next/dynamic';
 import {
   View,
   Button,
@@ -14,9 +16,9 @@ import PageContainer from '../components/PageContainer/PageContainer';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 import { useState, useEffect } from 'react';
-import TableFilters from './components/tableFilters';
+const TableFilters = dynamic(() => import('./components/tableFilters'), { ssr: false });
+const IndexPage = dynamic(() => import('../components/IndexPage'), { ssr: false });
 import { Car } from '../../types/Car';
-import IndexPage from '../components/IndexPage';
 import { CarFiltersType } from '@/types/UserForm';
 
 export default function Cars() {

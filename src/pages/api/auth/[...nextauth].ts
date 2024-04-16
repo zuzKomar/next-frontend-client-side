@@ -7,6 +7,7 @@ async function refreshAccessToken(tokenObject: JWT) {
     // Get a new set of tokens with a refreshToken
     const tokenResponse = await fetch(`${process.env.NEST_URL}/auth/refresh`, {
       method: 'GET',
+      cache: 'no-store',
       headers: {
         'Content-Type': 'application/json',
         mode: 'cors',
@@ -47,6 +48,7 @@ export const authOptions: NextAuthOptions = {
           body: JSON.stringify({ email, password }),
           mode: 'cors',
           credentials: 'include',
+          cache: 'no-store',
           headers: {
             'Content-Type': 'application/json',
           },

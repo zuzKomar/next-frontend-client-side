@@ -25,8 +25,10 @@ export default function Cars() {
   const [carData, setCarData] = useState<Car[]>([]);
   const [noCars, setNoCars] = useState<boolean>();
 
-  const { data } = useSession();
-  const token = data?.user ? data.user?.token : '';
+  //const { data } = useSession();
+  const token =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoienV6YTFAd3AucGwiLCJpYXQiOjE3MTMyNzMwNTIsImV4cCI6MTcxMzM1OTQ1Mn0.cRR9pq8lakfVfwijRF1Q4f9pXDEaXiCjbmWlcYy0KeI';
+  //data?.user ? data.user?.token : '';
 
   const columns = [
     { name: 'Brand', uid: 'brand' },
@@ -38,23 +40,23 @@ export default function Cars() {
   ];
 
   useEffect(() => {
-    if (data) {
-      fetch(`/api/fetch-all-cars`, {
-        mode: 'cors',
-        cache: 'no-store',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + token,
-        },
+    // if (data) {
+    fetch(`/api/fetch-all-cars`, {
+      mode: 'cors',
+      cache: 'no-store',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + token,
+      },
+    })
+      .then(res => {
+        return res.json();
       })
-        .then(res => {
-          return res.json();
-        })
-        .then(data => {
-          setCarData([...data.body]);
-          setNoCars(data.body.length === 0);
-        });
-    }
+      .then(data => {
+        setCarData([...data.body]);
+        setNoCars(data.body.length === 0);
+      });
+    // }
   }, []);
 
   async function fetchFilteredData(filtersData: CarFiltersType) {
@@ -134,7 +136,7 @@ export default function Cars() {
       mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + data?.user.token,
+        Authorization: 'Bearer ' + token,
       },
     })
       .then(res => {
@@ -154,7 +156,7 @@ export default function Cars() {
   }
 
   return (
-    <PageContainer checkAuthorized={true}>
+    <PageContainer>
       <IndexPage />
       <h1>Available cars:</h1>
       <Flex direction="row" marginBottom="5px">

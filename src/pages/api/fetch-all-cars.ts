@@ -18,7 +18,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     headers: {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
-      Authorization: `Bearer ${token!.accessToken}`,
+      Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoienV6YTFAd3AucGwiLCJpYXQiOjE3MTMyNzMwNTIsImV4cCI6MTcxMzM1OTQ1Mn0.cRR9pq8lakfVfwijRF1Q4f9pXDEaXiCjbmWlcYy0KeI`,
     },
   })
     .then(res => res.json())

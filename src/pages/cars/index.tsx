@@ -27,8 +27,10 @@ export default function Cars() {
   const [carData, setCarData] = useState<Car[]>([]);
   const [noCars, setNoCars] = useState<boolean>();
 
-  const { data } = useSession();
-  const token = data?.user ? data.user?.token : '';
+  //const { data } = useSession();
+  const token =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoienV6YTFAd3AucGwiLCJpYXQiOjE3MTMyOTI0MzQsImV4cCI6MTcxMzM3ODgzNH0.sdJ3uG8sJkLVXHqgB9S2VOJ_GJJ_sJKS7zw1slpbLW4';
+  //data?.user ? data.user?.token : '';
 
   const columns = [
     { name: 'Brand', uid: 'brand' },
@@ -40,23 +42,23 @@ export default function Cars() {
   ];
 
   useEffect(() => {
-    if (data) {
-      fetch(`/api/fetch-all-cars`, {
-        mode: 'cors',
-        cache: 'no-store',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + token,
-        },
+    // if (data) {
+    fetch(`/api/fetch-all-cars`, {
+      mode: 'cors',
+      cache: 'no-store',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + token,
+      },
+    })
+      .then(res => {
+        return res.json();
       })
-        .then(res => {
-          return res.json();
-        })
-        .then(data => {
-          setCarData([...data.body]);
-          setNoCars(data.body.length === 0);
-        });
-    }
+      .then(data => {
+        setCarData([...data.body]);
+        setNoCars(data.body.length === 0);
+      });
+    // }
   }, []);
 
   async function fetchFilteredData(filtersData: CarFiltersType) {
@@ -136,7 +138,7 @@ export default function Cars() {
       mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + data?.user.token,
+        Authorization: 'Bearer ' + token,
       },
     })
       .then(res => {

@@ -1,14 +1,14 @@
 'use client';
-import Head from 'next/head';
 import Script from 'next/script';
 
 function IndexPage() {
   return (
     <div>
-      <Head>
+      <head>
+        <base href="/" />
         <title>The Midnight! Rent a car</title>
-      </Head>
-      <Script type="text/javascript" src="https://unpkg.com/default-passive-events" />
+      </head>
+      <Script type="text/javascript" src="https://unpkg.com/default-passive-events" defer />
     </div>
   );
 }

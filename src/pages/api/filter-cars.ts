@@ -14,11 +14,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   await fetch(`https://rent-a-car-backend-f130520aafb5.herokuapp.com/${req.body.pathname}`, {
     method: 'GET',
     mode: 'cors',
-    cache: 'no-store',
     headers: {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
       Authorization: `Bearer ${token!.accessToken}`,
+      'Cache-Control': 'no-store',
     },
   })
     .then(res => res.json())

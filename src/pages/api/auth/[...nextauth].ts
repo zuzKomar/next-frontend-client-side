@@ -48,7 +48,6 @@ export const authOptions: NextAuthOptions = {
           body: JSON.stringify({ email, password }),
           mode: 'cors',
           credentials: 'include',
-          cache: 'no-store',
           headers: {
             'Content-Type': 'application/json',
           },
